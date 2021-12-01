@@ -1,3 +1,5 @@
+pub mod day_01;
+
 fn main() {
-    println!("Hello, world!");
+    println!("Run 'cargo test' :)");
 }
