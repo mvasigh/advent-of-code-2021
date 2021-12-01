@@ -1,5 +1,14 @@
+extern crate colorful;
+
+use colorful::core::color_string::CString;
+use colorful::Color;
+use colorful::Colorful;
 use std::fs::File;
 use std::io::{self, BufRead};
+
+fn format(val: i32) -> CString {
+    format!(" {} ", val).color(Color::Black).bg_green()
+}
 
 fn read_input() -> io::Result<io::BufReader<File>> {
     let file = File::open("./src/day_01/input.txt")?;
@@ -54,12 +63,12 @@ fn part_2() -> io::Result<i32> {
 
 #[test]
 fn test_part_1() -> std::io::Result<()> {
-    println!("Day 1, Part 1: {}", part_1()?);
+    println!("Day 1, Part 1: {}", format(part_1()?));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
-    println!("Day 1, Part 2: {}", part_2()?);
+    println!("Day 1, Part 2: {}", format(part_2()?));
     Ok(())
 }
