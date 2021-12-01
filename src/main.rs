@@ -1,5 +1,7 @@
+#![allow(dead_code)]
+
 pub mod day_01;
 
 fn main() {
-    println!("Run 'cargo test' :)");
+    panic!("You probably want to run 'cargo test -- --nocapture' :)");
 }
