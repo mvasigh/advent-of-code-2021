@@ -14,11 +14,11 @@ sh ./test.sh
 To run the Rust solutions, make sure you have Rust and Cargo installed and run:
 
 ```sh
-cargo test -- --nocapture
+cargo test part -- --nocapture --test-threads=1
 ```
 
 To run the TypeScript solutions, make sure you have [Deno](https://deno.land) installed and run:
 
 ```sh
-deno test --allow-read
+deno test -A --filter="/Day \d+, Part \d+/"
 ```
