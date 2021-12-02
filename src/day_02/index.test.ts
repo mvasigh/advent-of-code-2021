@@ -5,15 +5,13 @@ const fmt = (val: number): string =>
 
 async function readInput(): Promise<{ command: string; val: number }[]> {
   const txt = await Deno.readTextFile("src/day_02/input.txt");
-  return [
-    ...txt
-      .trim()
-      .split("\n")
-      .map((l) => {
-        const [command, val] = l.split(" ");
-        return { command, val: Number(val) };
-      }),
-  ];
+  return txt
+    .trim()
+    .split("\n")
+    .map((l) => {
+      const [command, val] = l.split(" ");
+      return { command, val: Number(val) };
+    });
 }
 
 async function part1(): Promise<number> {
@@ -40,7 +38,7 @@ async function part2(): Promise<number> {
   let pos = 0;
   let aim = 0;
 
-  for (const {command, val} of input) {
+  for (const { command, val } of input) {
     if (command === "forward") {
       pos += val;
       depth += aim * val;
