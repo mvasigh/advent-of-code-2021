@@ -1,8 +1,4 @@
-extern crate colorful;
-
-use colorful::core::color_string::CString;
-use colorful::Color;
-use colorful::Colorful;
+use crate::util;
 use regex::Regex;
 use std::fs::File;
 use std::io::{self, BufRead};
@@ -10,10 +6,6 @@ use std::io::{self, BufRead};
 struct Instruction {
     command: String,
     val: i32,
-}
-
-fn format(val: i32) -> CString {
-    format!(" {} ", val).color(Color::Black).bg_green()
 }
 
 fn read_input() -> io::Result<Vec<Instruction>> {
@@ -74,12 +66,12 @@ fn part_2() -> io::Result<i32> {
 
 #[test]
 fn test_part_1() -> std::io::Result<()> {
-    println!("Day 2, Part 1: {}", format(part_1()?));
+    println!("Day 2, Part 1: {}", util::format(part_1()?));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
-    println!("Day 2, Part 2: {}", format(part_2()?));
+    println!("Day 2, Part 2: {}", util::format(part_2()?));
     Ok(())
 }

@@ -1,7 +1,4 @@
-import * as Colors from "https://deno.land/std@0.116.0/fmt/colors.ts";
-
-const fmt = (val: number): string =>
-  Colors.bgGreen(Colors.black(" " + val.toString() + " "));
+import * as util from "../util.ts";
 
 async function readInput(): Promise<{ command: string; val: number }[]> {
   const txt = await Deno.readTextFile("src/day_02/input.txt");
@@ -54,10 +51,10 @@ async function part2(): Promise<number> {
 
 Deno.test("Day 2, Part 1:", async () => {
   const answer = await part1();
-  console.log(fmt(answer));
+  console.log(util.format(answer));
 });
 
 Deno.test("Day 2, Part 2:", async () => {
   const answer = await part2();
-  console.log(fmt(answer));
+  console.log(util.format(answer));
 });
