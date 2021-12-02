@@ -35,22 +35,15 @@ fn read_input() -> io::Result<Vec<Instruction>> {
 }
 
 fn part_1() -> io::Result<i32> {
-    let instructions = read_input()?;
-
+    let input = read_input()?;
     let mut pos = 0;
     let mut depth = 0;
 
-    for ins in instructions {
+    for ins in input {
         match ins.command.as_str() {
-            "forward" => {
-                pos += ins.val;
-            }
-            "up" => {
-                depth -= ins.val;
-            }
-            "down" => {
-                depth += ins.val;
-            }
+            "forward" => pos += ins.val,
+            "up" => depth -= ins.val,
+            "down" => depth += ins.val,
             _ => {}
         }
     }
@@ -59,24 +52,19 @@ fn part_1() -> io::Result<i32> {
 }
 
 fn part_2() -> io::Result<i32> {
-    let instructions = read_input()?;
-
+    let input = read_input()?;
     let mut pos = 0;
     let mut depth = 0;
     let mut aim = 0;
 
-    for ins in instructions {
+    for ins in input {
         match ins.command.as_str() {
             "forward" => {
                 pos += ins.val;
                 depth += aim * ins.val;
             }
-            "up" => {
-                aim -= ins.val;
-            }
-            "down" => {
-                aim += ins.val;
-            }
+            "up" => aim -= ins.val,
+            "down" => aim += ins.val,
             _ => {}
         }
     }
