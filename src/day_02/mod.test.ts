@@ -1,6 +1,11 @@
 import * as util from "../util.ts";
 
-async function readInput(): Promise<{ command: string; val: number }[]> {
+type Instruction = {
+  command: string;
+  val: number;
+};
+
+async function readInput(): Promise<Instruction[]> {
   const txt = await Deno.readTextFile("src/day_02/input.txt");
   return txt
     .trim()
@@ -11,8 +16,7 @@ async function readInput(): Promise<{ command: string; val: number }[]> {
     });
 }
 
-async function part1(): Promise<number> {
-  const input = await readInput();
+function part1(input: Instruction[]): number {
   let depth = 0;
   let pos = 0;
 
@@ -29,8 +33,7 @@ async function part1(): Promise<number> {
   return depth * pos;
 }
 
-async function part2(): Promise<number> {
-  const input = await readInput();
+function part2(input: Instruction[]): number {
   let depth = 0;
   let pos = 0;
   let aim = 0;
@@ -50,11 +53,11 @@ async function part2(): Promise<number> {
 }
 
 Deno.test("Day 2, Part 1:", async () => {
-  const answer = await part1();
-  console.log(util.format(answer));
+  const input = await readInput();
+  console.log(util.format(part1(input)));
 });
 
 Deno.test("Day 2, Part 2:", async () => {
-  const answer = await part2();
-  console.log(util.format(answer));
+  const input = await readInput();
+  console.log(util.format(part2(input)));
 });

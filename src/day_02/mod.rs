@@ -26,8 +26,7 @@ fn read_input() -> io::Result<Vec<Instruction>> {
     Ok(lines)
 }
 
-fn part_1() -> io::Result<i32> {
-    let input = read_input()?;
+fn part_1(input: Vec<Instruction>) -> io::Result<i32> {
     let mut pos = 0;
     let mut depth = 0;
 
@@ -43,8 +42,7 @@ fn part_1() -> io::Result<i32> {
     Ok(pos * depth)
 }
 
-fn part_2() -> io::Result<i32> {
-    let input = read_input()?;
+fn part_2(input: Vec<Instruction>) -> io::Result<i32> {
     let mut pos = 0;
     let mut depth = 0;
     let mut aim = 0;
@@ -66,12 +64,14 @@ fn part_2() -> io::Result<i32> {
 
 #[test]
 fn test_part_1() -> std::io::Result<()> {
-    println!("Day 2, Part 1: {}", util::format(part_1()?));
+    let input = read_input()?;
+    println!("Day 2, Part 1: {}", util::format(part_1(input)?));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
-    println!("Day 2, Part 2: {}", util::format(part_2()?));
+    let input = read_input()?;
+    println!("Day 2, Part 2: {}", util::format(part_2(input)?));
     Ok(())
 }

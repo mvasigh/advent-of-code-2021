@@ -9,8 +9,7 @@ fn read_input() -> io::Result<io::BufReader<File>> {
     Ok(reader)
 }
 
-fn part_1() -> io::Result<i32> {
-    let reader = read_input()?;
+fn part_1(reader: io::BufReader<File>) -> io::Result<i32> {
     let mut prev = i32::MAX;
     let mut increases = 0;
 
@@ -27,8 +26,7 @@ fn part_1() -> io::Result<i32> {
     Ok(increases)
 }
 
-fn part_2() -> io::Result<i32> {
-    let reader = read_input()?;
+fn part_2(reader: io::BufReader<File>) -> io::Result<i32> {
     let mut window = Vec::new();
     let mut increases = 0;
 
@@ -55,12 +53,14 @@ fn part_2() -> io::Result<i32> {
 
 #[test]
 fn test_part_1() -> std::io::Result<()> {
-    println!("Day 1, Part 1: {}", util::format(part_1()?));
+    let input = read_input()?;
+    println!("Day 1, Part 1: {}", util::format(part_1(input)?));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
-    println!("Day 1, Part 2: {}", util::format(part_2()?));
+    let input = read_input()?;
+    println!("Day 1, Part 2: {}", util::format(part_2(input)?));
     Ok(())
 }

@@ -8,8 +8,7 @@ async function readInput(): Promise<number[]> {
     .map((v) => parseInt(v));
 }
 
-async function part1(): Promise<number> {
-  const input = await readInput();
+function part1(input: number[]): number {
   let prev = Number.MAX_VALUE;
   let increases = 0;
 
@@ -24,8 +23,7 @@ async function part1(): Promise<number> {
   return increases;
 }
 
-async function part2(): Promise<number> {
-  const input = await readInput();
+function part2(input: number[]): number {
   let window: number[] = [];
   let increases = 0;
 
@@ -49,11 +47,11 @@ async function part2(): Promise<number> {
 }
 
 Deno.test("Day 1, Part 1:", async () => {
-  const answer = await part1();
-  console.log(util.format(answer));
+  const input = await readInput();
+  console.log(util.format(part1(input)));
 });
 
 Deno.test("Day 1, Part 2:", async () => {
-  const answer = await part2();
-  console.log(util.format(answer));
+  const input = await readInput();
+  console.log(util.format(part2(input)));
 });
