@@ -229,6 +229,6 @@ fn test_part_1() -> std::io::Result<()> {
 fn test_part_2() -> std::io::Result<()> {
     let input_str = read_input()?;
     let (numbers, boards) = parse_input(input_str);
-    println!("Day 4, Part 1: {}", util::format(part_2(numbers, boards)));
+    println!("Day 4, Part 2: {}", util::format(part_2(numbers, boards)));
     Ok(())
 }
