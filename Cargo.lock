@@ -7,6 +7,7 @@ name = "advent-of-code-2021"
 version = "0.1.0"
 dependencies = [
  "colorful",
+ "lazy_static",
  "regex",
 ]
 
@@ -24,6 +25,12 @@ name = "colorful"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0bca1619ff57dd7a56b58a8e25ef4199f123e78e503fe1653410350a1b98ae65"
+
+[[package]]
+name = "lazy_static"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "memchr"
