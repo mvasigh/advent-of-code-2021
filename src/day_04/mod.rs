@@ -126,13 +126,13 @@ fn parse_input(input: String) -> (VecDeque<i32>, Vec<Board>) {
 
 fn part_1(mut numbers: VecDeque<i32>, mut boards: Vec<Board>) -> i32 {
     while numbers.len() > 0 {
-        let num = numbers.pop_front().unwrap();
+        let number = numbers.pop_front().unwrap();
 
         for board in boards.iter_mut() {
-            board.put(num);
+            board.put(number);
 
             if board.is_winner() {
-                return num * board.unmarked_sum();
+                return number * board.unmarked_sum();
             }
         }
     }
