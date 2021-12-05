@@ -27,8 +27,8 @@ fn overlaps(lines: Vec<[f32; 4]>, diagonal: bool) -> i32 {
         let dy = y2 - y1;
         let end = f32::max(dx.abs(), dy.abs());
         let mut i = 0.0;
-        
-        while i < end + 1.0 {
+
+        while i <= end {
             let x = x1 + ((i / end) * dx).round();
             let y = y1 + ((i / end) * dy).round();
             *pts.entry(format!("{},{}", x, y)).or_insert(0) += 1;
