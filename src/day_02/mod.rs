@@ -65,13 +65,13 @@ fn part_2(input: Vec<Instruction>) -> io::Result<i32> {
 #[test]
 fn test_part_1() -> std::io::Result<()> {
     let input = read_input()?;
-    println!("Day 2, Part 1: {}", util::format(part_1(input)?));
+    println!("{}", util::format(part_1(input)?));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
     let input = read_input()?;
-    println!("Day 2, Part 2: {}", util::format(part_2(input)?));
+    println!("{}", util::format(part_2(input)?));
     Ok(())
 }

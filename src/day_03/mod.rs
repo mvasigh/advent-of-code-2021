@@ -110,13 +110,13 @@ fn part_2(input: Vec<i32>, bits: usize) -> i32 {
 #[test]
 fn test_part_1() -> std::io::Result<()> {
     let input = read_input()?;
-    println!("Day 3, Part 1: {}", util::format(part_1(input, 12)));
+    println!("{}", util::format(part_1(input, 12)));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
     let input = read_input()?;
-    println!("Day 3, Part 2: {}", util::format(part_2(input, 12)));
+    println!("{}", util::format(part_2(input, 12)));
     Ok(())
 }

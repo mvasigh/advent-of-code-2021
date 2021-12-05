@@ -4,6 +4,21 @@ use colorful::core::color_string::CString;
 use colorful::Color;
 use colorful::Colorful;
 use regex::Regex;
+use std::fs;
+use std::io;
+
+pub fn read_input(day: i32) -> io::Result<io::BufReader<fs::File>> {
+    let file = fs::File::open(format!("./src/day_{:02}/input.txt", day))?;
+    let reader = io::BufReader::new(file);
+
+    Ok(reader)
+}
+
+pub fn read_input_str(day: i32) -> io::Result<String> {
+    let string = fs::read_to_string(format!("./src/day_{:02}/input.txt", day))?;
+
+    Ok(string)
+}
 
 pub fn extract_nums<T>(text: &str) -> Vec<T>
 where
