@@ -9,16 +9,34 @@ BOLD=`tput bold`
 NC=`tput sgr0`
 SEPARATOR="++++++++++++++++"
 
+day=$1
+while ((${#day} < 2)); do 
+  day="0$day"
+done
+
 echo "\n"
 
 echo "${WHITE}${RED_BG}${BOLD} Rust solutions 🦀 ${NC}"
 echo "${SEPARATOR}"
-cargo test part -- --nocapture --test-threads=1
+
+if [ -z "$1" ]; 
+then
+  cargo test part -- --nocapture --test-threads=1
+else
+  filter="day_$day::test_part"
+  cargo test "$filter" -- --nocapture --test-threads=1
+fi
 
 echo "\n"
 
 echo "${BLACK}${BLUE_BG}${BOLD} TypeScript solutions 🤓 ${NC}"
 echo "${SEPARATOR}"
-deno test -A --filter "/Day \d+, Part \d+/"
+
+if [ -z "$1" ]; 
+then
+  deno test -A --filter "/Day \d+, Part \d+/"
+else
+  deno test -A --filter "/Day $1, Part \d+/"
+fi
 
 
