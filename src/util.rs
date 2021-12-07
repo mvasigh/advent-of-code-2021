@@ -34,6 +34,9 @@ where
         .collect()
 }
 
-pub fn format(val: i32) -> CString {
+pub fn format<T>(val: T) -> CString
+where
+    T: std::fmt::Display,
+{
     format!(" {} ", val).color(Color::Black).bg_green()
 }

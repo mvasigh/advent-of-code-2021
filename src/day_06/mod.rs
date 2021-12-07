@@ -1,66 +1,50 @@
-use crate::util::{self, format};
+use crate::util::{self, format, extract_nums};
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead};
 
-fn parse_input(input: String) -> Vec<[f32; 4]> {
-    input
-        .split("\n")
-        .map(|v| {
-            let nums = util::extract_nums::<f32>(v);
-            [nums[0], nums[1], nums[2], nums[3]]
-        })
-        .collect()
-}
+fn model_fish(mut fish: i64, mut days: i64, cache: &mut HashMap<String, i64>) -> i64 {
+    let mut sum = 1;
+    let key = format!("{},{}", fish, days);
+    if days <= 0 { return sum; }
+    if cache.contains_key(&key) { return *cache.get(&key).unwrap(); }
 
-fn overlaps(lines: Vec<[f32; 4]>, diagonal: bool) -> i32 {
-    let mut pts = HashMap::new();
-
-    for line in lines {
-        let [x1, y1, x2, y2] = line;
-
-        if !diagonal && y2 != y1 && x2 != x1 {
-            continue;
-        }
-
-        let dx = x2 - x1;
-        let dy = y2 - y1;
-        let end = f32::max(dx.abs(), dy.abs());
-        let mut i = 0.0;
-
-        while i <= end {
-            let x = x1 + ((i / end) * dx).round();
-            let y = y1 + ((i / end) * dy).round();
-            *pts.entry(format!("{},{}", x, y)).or_insert(0) += 1;
-            i += 1.0;
-        }
+    while days > fish {
+        days -= fish + 1;
+        fish = 6;
+        sum += model_fish(8, days.to_owned(), cache);
     }
 
-    pts.into_iter()
-        .filter(|(_, v)| *v > 1)
-        .fold(0, |sum, _| sum + 1) as i32
+    cache.insert(key, sum);
+
+    sum
 }
 
-fn part_1(lines: Vec<[f32; 4]>) -> i32 {
-    overlaps(lines, false)
+fn model_fish_list(fish: Vec<i64>, days: i64) -> i64 {
+    let mut cache = HashMap::new();
+    fish.iter().fold(0, |sum, f| sum + model_fish(*f, days, &mut cache))
 }
 
-fn part_2(lines: Vec<[f32; 4]>) -> i32 {
-    overlaps(lines, true)
+fn part_1(fish: Vec<i64>) -> i64 {
+    model_fish_list(fish, 80)
+}
+
+fn part_2(fish: Vec<i64>) -> i64 {
+    model_fish_list(fish, 256)
 }
 
 #[test]
 fn test_part_1() -> std::io::Result<()> {
-    let input = util::read_input_str(5)?;
-    let lines = parse_input(input);
-    println!("{}", util::format(part_1(lines)));
+    let input = util::read_input_str(6)?;
+    let fish = util::extract_nums::<i64>(&input);
+    println!("{}", util::format(part_1(fish)));
     Ok(())
 }
 
 #[test]
 fn test_part_2() -> std::io::Result<()> {
-    let input = util::read_input_str(5)?;
-    let lines = parse_input(input);
-    println!("{}", util::format(part_2(lines)));
+    let input = util::read_input_str(6)?;
+    let fish = util::extract_nums::<i64>(&input);
+    println!("{}", util::format(part_2(fish)));
     Ok(())
 }
