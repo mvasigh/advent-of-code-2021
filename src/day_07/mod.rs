@@ -3,28 +3,24 @@ use std::collections::HashMap;
 use std::fs::File;
 use std::io::{self, BufRead};
 
-fn min_max(nums: &Vec<i64>) -> (i64, i64) {
-    nums.iter().fold((i64::MAX, i64::MIN), |mut s, val| {
-        s.0 = s.0.min(*val);
-        s.1 = s.1.max(*val);
-        s
-    })
-}
-
 fn best_pos(crabs: Vec<i64>, greedy: bool) -> i64 {
-    let (min, max) = min_max(&crabs);
-    let size = (max - min) as usize;
-    let mut pos = vec![0; size];
-
-    for crab in crabs {
-        for i in 0..size {
-            let loc = min + i as i64;
-            let diff = (crab - loc).abs();
-            pos[i] += if greedy { ((diff + 1) * (diff)) / 2 } else { diff };
-        }
-    }
-
-    pos.iter().fold(i64::MAX, |best, val| best.min(*val)) 
+    let (min, max) = (*crabs.iter().min().unwrap(), *crabs.iter().max().unwrap());
+    (0..(max - min) as usize)
+        .map(|i| {
+            crabs
+                .iter()
+                .map(|c| {
+                    let diff = (c - (min + i as i64)).abs();
+                    if greedy {
+                        ((diff + 1) * diff) / 2
+                    } else {
+                        diff
+                    }
+                })
+                .sum()
+        })
+        .min()
+        .unwrap()
 }
 
 fn part_1(crabs: Vec<i64>) -> i64 {
