@@ -1,21 +1,17 @@
 import { format, readInputStr, extractNums, range } from "../util.ts";
 
 function bestPos(crabs: number[], greedy = false): number {
-  const [min, max] = crabs.reduce(
-    ([sm, lg], v) => [Math.min(sm, v), Math.max(lg, v)],
-    [Number.MAX_VALUE, Number.MIN_VALUE]
+  const [min, max] = [Math.min(...crabs), Math.max(...crabs)];
+  return Math.min(
+    ...Array(max - min)
+      .fill(0)
+      .map((_, i) =>
+        crabs.reduce((sum, crab) => {
+          const diff = Math.abs(crab - (min + i));
+          return sum + (greedy ? ((diff + 1) * diff) / 2 : diff);
+        }, 0)
+      )
   );
-
-  const pos = Array(max - min).fill(0);
-
-  for (const crab of crabs) {
-    for (const i of range(max - min)) {
-      const diff = Math.abs(crab - (min + i));
-      pos[i] += greedy ? ((diff + 1) * diff) / 2 : diff;
-    }
-  }
-
-  return Math.min(...pos);
 }
 
 const part1 = (crabs: number[]): number => bestPos(crabs);
