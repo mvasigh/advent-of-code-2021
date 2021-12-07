@@ -2,15 +2,14 @@ import { format, readInputStr, extractNums, range } from "../util.ts";
 
 function bestPos(crabs: number[], greedy = false): number {
   const [min, max] = [Math.min(...crabs), Math.max(...crabs)];
-  return Math.min(
-    ...Array(max - min)
-      .fill(0)
-      .map((_, i) =>
-        crabs.reduce((sum, crab) => {
-          const diff = Math.abs(crab - (min + i));
-          return sum + (greedy ? ((diff + 1) * diff) / 2 : diff);
-        }, 0)
-      )
+  return range(max - min).reduce((best, i) =>
+    Math.min(
+      best || Infinity,
+      crabs.reduce((sum, crab) => {
+        const diff = Math.abs(crab - (min + i));
+        return sum + (greedy ? ((diff + 1) * diff) / 2 : diff);
+      }, 0)
+    )
   );
 }
 
