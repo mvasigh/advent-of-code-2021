@@ -7,7 +7,7 @@ RED_BG=`tput setab 1`
 BLUE_BG=`tput setab 4`
 BOLD=`tput bold`
 NC=`tput sgr0`
-SEPARATOR="++++++++++++++++"
+SEPARATOR="+++++++++++++++++++++++++++++++"
 
 day=$1
 while ((${#day} < 2)); do 
@@ -16,7 +16,7 @@ done
 
 echo "\n"
 
-echo "${WHITE}${RED_BG}${BOLD} Rust solutions 🦀 ${NC}"
+echo "${WHITE}${RED_BG}${BOLD} Rust 🦀 ${NC}"
 echo "${SEPARATOR}"
 
 if [ -z "$1" ]; 
@@ -27,16 +27,15 @@ else
   cargo test "$filter" -- --nocapture --test-threads=1
 fi
 
-echo "\n"
-
-echo "${BLACK}${BLUE_BG}${BOLD} TypeScript solutions 🤓 ${NC}"
+echo "${BLACK}${BLUE_BG}${BOLD} TypeScript 💻 ${NC}"
 echo "${SEPARATOR}"
 
 if [ -z "$1" ]; 
 then
   deno test -A --filter "/Day \d+, Part \d+/"
 else
-  deno test -A --filter "/Day $1, Part \d+/"
+  dir="./src/day_$day"
+  deno test "$dir" -A --filter "/Day $1, Part \d+/"
 fi
 
 

@@ -11,6 +11,11 @@ To run everything:
 sh ./test.sh
 ```
 
+To run tests for a specific day using the shell script, you can pass the day as an argument:
+```sh
+sh ./test.sh 7 # Runs Day 7 tests
+```
+
 To run the Rust solutions, make sure you have Rust and Cargo installed and run:
 
 ```sh
