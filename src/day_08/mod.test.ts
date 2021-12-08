@@ -1,7 +1,7 @@
 import { format, readInputStr } from "../util.ts";
 
 function diff(a: string, b: string): string {
-  if (!a || !b) return "aaaaaaaa";
+  if (!a || !b) return "aaaaaaaa"; // lol
 
   const smaller = a.length < b.length ? a : b;
   let larger = a === smaller ? b : a;
