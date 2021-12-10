@@ -22,7 +22,7 @@ function findIslands(
       if (!gt(heightmap[r + 1]?.[c], val)) continue;
       if (!gt(heightmap[r][c - 1], val)) continue;
       if (!gt(heightmap[r][c + 1], val)) continue;
-      ``;
+
       each(val, r, c);
     }
   }
