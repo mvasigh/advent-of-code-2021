@@ -14,6 +14,7 @@ function findIslands(
   each: (val: number, r: number, c: number) => void
 ) {
   const gt = (a: number, b: number) => !exists(a) || a > b;
+
   for (let r = 0; r < heightmap.length; r++) {
     for (let c = 0; c < heightmap[r].length; c++) {
       const val = heightmap[r][c];
@@ -30,7 +31,9 @@ function findIslands(
 
 function part1(heightmap: number[][]): number {
   let sum = 0;
+
   findIslands(heightmap, (v) => (sum += v + 1));
+  
   return sum;
 }
 
