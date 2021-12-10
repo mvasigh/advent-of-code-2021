@@ -23,3 +23,5 @@ export const chunk = (arr: unknown[], chunkSize = 10): unknown[][] => {
   }
   return chunks;
 };
+
+export const exists = (val: unknown) => val != null;
