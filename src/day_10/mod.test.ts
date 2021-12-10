@@ -27,11 +27,9 @@ function parseChunks(lines: string[]): [number, number] {
     for (const char of line) {
       if (openers.has(char) || !stack.length) {
         stack.push(char);
-      } else {
-        if (chunks[char][0] !== stack.pop()) {
-          syntax += chunks[char][1];
-          continue outer;
-        }
+      } else if (chunks[char][0] !== stack.pop()) {
+        syntax += chunks[char][1];
+        continue outer;
       }
     }
 
