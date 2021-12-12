@@ -25,12 +25,9 @@ function traverse(
   if (node === "end") return 1;
 
   if (/[a-z]+/.test(node)) {
-    if (double) {
-      if (twice === node) return 0;
-      if (twice && once[node]) return 0;
-    } else {
-      if (once[node]) return 0;
-    }
+    if (double && twice === node) return 0;
+    if (double && twice && once[node]) return 0;
+    if (!double && once[node]) return 0;
     once[node] ? (twice = node) : (once[node] = true);
   }
 
