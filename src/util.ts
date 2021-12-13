@@ -1,6 +1,6 @@
 import * as Colors from "https://deno.land/std@0.116.0/fmt/colors.ts";
 
-export const format = (val: number): string =>
+export const format = (val: string | number): string =>
   Colors.bgGreen(Colors.black(" " + val.toString() + " "));
 
 export const range = (length: number): number[] =>
@@ -15,6 +15,8 @@ export const readInputStr = async (day: number): Promise<string> => {
 
 export const extractNums = (txt: string) =>
   [...txt.matchAll(/\d+/g)].map((m) => parseInt(m[0], 10));
+
+export const lines = (txt: string) => txt.trim().split("\n");
 
 export const chunk = (arr: unknown[], chunkSize = 10): unknown[][] => {
   const chunks: unknown[][] = [];
