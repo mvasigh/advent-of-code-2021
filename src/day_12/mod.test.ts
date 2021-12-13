@@ -1,4 +1,4 @@
-import { readInputStr, format } from "../util.ts";
+import { readInputStr, format, bench } from "../util.ts";
 
 function parseInput(input: string): Record<string, string[]> {
   return input
@@ -47,10 +47,12 @@ function part2(nodes: Record<string, string[]>): number {
 
 Deno.test("Day 12, Part 1:", async () => {
   const nodes = await readInputStr(12).then(parseInput);
-  console.log(format(part1(nodes)));
+  const [result, time] = bench(() => part1(nodes));
+  console.log(format(result), `(${time} ms)`);
 });
 
 Deno.test("Day 12, Part 2:", async () => {
   const nodes = await readInputStr(12).then(parseInput);
-  console.log(format(part2(nodes)));
+  const [result, time] = bench(() => part2(nodes));
+  console.log(format(result), `(${time} ms)`);
 });

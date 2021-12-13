@@ -27,3 +27,9 @@ export const chunk = (arr: unknown[], chunkSize = 10): unknown[][] => {
 };
 
 export const exists = (val: unknown) => val != null;
+
+export const bench = (fn: Function) => {
+  const now = performance.now();
+  const result = fn();
+  return [result, (performance.now() - now).toFixed(2)];
+};
