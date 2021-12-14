@@ -1,4 +1,4 @@
-import { readInputStr, format, lines, bench } from "../util.ts";
+import { readInputStr, format, lines, bench, range } from "../util.ts";
 
 function parseInput(input: string): [string, Record<string, string>] {
   const [template, rulesRaw] = input.trim().split("\n\n");
@@ -17,7 +17,7 @@ function splitPairs(
 ): [Record<string, number>, Record<string, number>] {
   const [pairs, chars]: Record<string, number>[] = [{}, {}];
 
-  for (let i = 0; i < txt.length; i++) {
+  for (const i of range(txt.length)) {
     add(chars, txt[i], 1);
     if (txt[i + 1]) add(pairs, txt[i] + txt[i + 1], 1);
   }
@@ -50,7 +50,7 @@ function steps(
 ): number {
   let data = splitPairs(template);
 
-  for (let i = 0; i < limit; i++) {
+  for (const _i of range(limit)) {
     data = step(...data, rules);
   }
 
