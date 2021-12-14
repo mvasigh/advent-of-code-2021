@@ -21,7 +21,7 @@ function overlaps(lines: number[][], diagonals = false): number {
     const dy = y2 - y1;
     const end = Math.max(Math.abs(dx), Math.abs(dy));
 
-    for (let i of range(end + 1)) {
+    for (const i of range(end + 1)) {
       const x = x1 + Math.round((i / end) * dx);
       const y = y1 + Math.round((i / end) * dy);
       const key = `${x},${y}`;

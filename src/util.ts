@@ -28,6 +28,7 @@ export const chunk = (arr: unknown[], chunkSize = 10): unknown[][] => {
 
 export const exists = (val: unknown) => val != null;
 
+// deno-lint-ignore ban-types
 export const bench = (fn: Function) => {
   const now = performance.now();
   const result = fn();
