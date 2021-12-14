@@ -32,13 +32,12 @@ function step(
 ): [Record<string, number>, Record<string, number>] {
   const [pairs, chars] = [{ ..._pairs }, { ..._chars }];
 
-  for (const [pair, insert] of Object.entries(rules)) {
-    if (!_pairs[pair]) continue;
+  for (const [p, i] of Object.entries(rules)) {
+    if (!_pairs[p]) continue;
 
-    const [a, b] = pair.split("");
-    [a + insert, insert + b].forEach((key) => add(pairs, key, _pairs[pair]));
-    add(chars, insert, _pairs[pair]);
-    pairs[pair] -= _pairs[pair];
+    [p[0] + i, i + p[1]].forEach((key) => add(pairs, key, _pairs[p]));
+    add(chars, i, _pairs[p]);
+    pairs[p] -= _pairs[p];
   }
 
   return [pairs, chars];
