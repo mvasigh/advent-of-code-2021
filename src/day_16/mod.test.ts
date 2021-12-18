@@ -1,21 +1,4 @@
-import { readInputStr, format, lines, bench, exists, range } from "../util.ts";
-
-// let value = 0;
-// if (typeId === 0) {
-//   value = children.reduce((sum, p) => sum + (p.value ?? 0), 0);
-// } else if (typeId === 1) {
-//   value = children.reduce((sum, p) => sum * (p.value ?? 1), 1);
-// } else if (typeId === 2) {
-//   value = Math.min(...children.map((p) => p.value ?? Infinity));
-// } else if (typeId === 3) {
-//   value = Math.max(...children.map((p) => p.value ?? -Infinity));
-// } else if (typeId === 5) {
-//   value = children[0].value > children[1].value ? 1 : 0;
-// } else if (typeId === 6) {
-//   value = children[0].value < children[1].value ? 1 : 0;
-// } else if (typeId === 7) {
-//   value = children[0].value === children[1].value ? 1 : 0;
-// }
+import { readInputStr, format, bench } from "../util.ts";
 
 type Packet = {
   root?: boolean;
