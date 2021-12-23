@@ -14,7 +14,7 @@ export const readInputStr = async (day: number): Promise<string> => {
 };
 
 export const extractNums = (txt: string) =>
-  [...txt.matchAll(/\d+/g)].map((m) => parseInt(m[0], 10));
+  [...txt.matchAll(/(-)?\d+/g)].map((m) => parseInt(m[0], 10));
 
 export const lines = (txt: string) => txt.trim().split("\n");
 
